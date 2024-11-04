@@ -4,11 +4,14 @@ public class ProductDTO {
     int id, price, id_cat;
     String name;
 
-    public ProductDTO(int id, int price, int id_cat, String name) {
+    public ProductDTO() {
+    }
+
+    public ProductDTO(int id, String name, int price, int id_cat) {
         this.id = id;
+        this.name = name;
         this.price = price;
         this.id_cat = id_cat;
-        this.name = name;
     }
 
     public int getId() {
