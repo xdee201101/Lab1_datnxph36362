@@ -6,8 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDBHelper extends SQLiteOpenHelper {
 
-    public MyDBHelper(Context context){
-        super(context,"QLBH.db",null,1);
+    public MyDBHelper(Context context) {
+        super(context, "QLBH.db", null, 1);
     }
 
     @Override
@@ -17,11 +17,14 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
         String sqlProduct = "CREATE TABLE tb_product (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXTUNIQUE NOT NULL, price REAL DEFAULT (0.0) NOT NULL, id_cat INTEGER REFERENCES tb_cat (id) );";
         db.execSQL(sqlProduct);
+
+        String sql_test = "INSERT INTO tb_cat (name) VALUES (\"TV\"),(\"Laptop\");";
+        db.execSQL(sql_test);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (newVersion > oldVersion){
+        if (newVersion > oldVersion) {
             db.execSQL("DROP TABLE IF EXISTS tb_cat");
             db.execSQL("DROP TABLE IF EXISTS tb_product");
             onCreate(db);

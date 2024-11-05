@@ -20,26 +20,26 @@ public class CatDAO {
         db = dbHelper.getWritableDatabase();
     }
 
-    public int AddRow(CatDTO objCat){
+    public int AddRow(CatDTO objCat) {
         ContentValues v = new ContentValues();
-        v.put("name",objCat.getName());
-        int kq = (int) db.insert("tb_cat",null,v);
+        v.put("name", objCat.getName());
+        int kq = (int) db.insert("tb_cat", null, v);
         return kq;
     }
 
-    public ArrayList<CatDTO> getList(){
+    public ArrayList<CatDTO> getList() {
         ArrayList<CatDTO> listCat = new ArrayList<>();
         Cursor c = db.rawQuery("SELECT id, name FROM tb_cat", null);
-        if (c != null && c.getCount() > 0){
+        if (c != null && c.getCount() > 0) {
             c.moveToFirst();
             do {
                 int id = c.getInt(0);
                 String name = c.getString(1);
                 CatDTO objCat = new CatDTO(id, name);
                 listCat.add(objCat);
-            }while (c.moveToNext());
-        }else {
-            Log.d("xxxxxx","catDAO::getList: Ko lấy được dữ liệu");
+            } while (c.moveToNext());
+        } else {
+            Log.d("xxxxxx", "catDAO::getList: Ko lấy được dữ liệu");
         }
         return listCat;
     }
